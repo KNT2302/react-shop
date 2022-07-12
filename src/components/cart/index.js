@@ -1,5 +1,5 @@
 import React from "react";
-import { useShopContext } from "../../store";
+import {useShopContext} from "../../store"
 
 const Index = () => {
   const { state } = useShopContext();

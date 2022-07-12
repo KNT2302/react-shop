@@ -1,4 +1,4 @@
-import { ADD_PRODUCT } from "./constants";
+import { ADD_PRODUCT, UPDATE_PRODUCT } from "../actions/constants";
 
 export const initState = {
   product: [
@@ -26,6 +26,18 @@ export const reducer = (state, action) => {
       return {
         ...state,
         product: [...state.product, action.payload],
+      };
+    }
+    case UPDATE_PRODUCT: {
+      const newProducts = state.product.map(item =>{
+        if(item.id === action.payload.id)
+          return action.payload
+        else
+          return item
+      })
+      return {
+        ...state,
+        product: newProducts
       };
     }
     default: {
