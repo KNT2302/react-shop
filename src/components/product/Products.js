@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProductPage from "./prod_list/ProductPage";
 import { ProductForm } from "./prod_form/index";
-import { ProductUpdate } from "./prod_update/ProductUpdate";
 import { useShopContext } from "../../store";
 
 const Products = () => {
@@ -34,7 +33,6 @@ const Products = () => {
       ) : (
         <ProductForm handleToggle={handleToggle} />
       )}
-      {isNeededUpdate ? <ProductUpdate /> : null}
     </div>
   );
 };
