@@ -1,16 +1,13 @@
+import { ADD_PRODUCT } from "./constants";
+
 export const initState = {
-  setProduct: {
-    id: "",
-    prodName: "",
-    price: "",
-    quantity: "",
-  },
   product: [
     {
       id: "1",
       prodName: "Product1",
       price: 20000,
       quantity: 18,
+      isCarted: false,
     },
   ],
   cart: [
@@ -25,5 +22,14 @@ export const initState = {
 
 export const reducer = (state, action) => {
   switch (action.type) {
+    case ADD_PRODUCT: {
+      return {
+        ...state,
+        product: [...state.product, action.payload],
+      };
+    }
+    default: {
+      return state;
+    }
   }
 };
