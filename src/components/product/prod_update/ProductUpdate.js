@@ -6,21 +6,20 @@ import "./productUpdate.scss";
 
 const ProductUpdate = ({ product, handleClickUpdate }) => {
   const { dispatch } = useShopContext();
- const {index, productUpdate: prod} = product
 
   return (
     <div className="productUpdate">
       <Formik
         initialValues={{
-          id: prod.id,
-          prodName: prod.prodName,
-          price: prod.price,
-          quantity: prod.quantity,
-          isCarted: prod.isCarted,
+          id: product.id,
+          prodName: product.prodName,
+          price: product.price,
+          quantity: product.quantity,
+          isCarted: product.isCarted,
         }}
         onSubmit={(values) => {
           handleClickUpdate();
-          dispatch(actions.updateProduct({index, newProduct: values}));
+          dispatch(actions.updateProduct(values));
         }}
       >
         {({ values, handleChange, handleSubmit }) => (

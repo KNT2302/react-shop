@@ -19,9 +19,9 @@ const Products = () => {
     setIsNeededUpdate(!isNeededUpdate);
   };
 
-  const getProductUpdate = (index) => {
-    //const findedProduct = state.product.find((prod) => prod.id === id);
-    setProduct({index, productUpdate: state.product[index]});
+  const getProductUpdate = (id) => {
+    const findedProduct = state.product.find((prod) => prod.id === id);
+    setProduct(findedProduct);
   };
 
   return (

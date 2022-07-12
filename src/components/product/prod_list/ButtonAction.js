@@ -1,7 +1,6 @@
 import React from "react";
 
 export const ButtonAction = ({
-  indexProduct,
   idProd,
   isCarted,
   handleClickUpdate,
@@ -14,7 +13,7 @@ export const ButtonAction = ({
       <button
         disabled={isCarted}
         onClick={() => {
-          getProductUpdate(indexProduct);
+          getProductUpdate(idProd);
           handleClickUpdate();
         }}
       >
