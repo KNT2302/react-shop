@@ -1,1 +1,3 @@
-export {default as ProductUpdate} from "./ProductUpdate"
+import ProductUpdate from "./ProductUpdate"
+
+export {ProductUpdate}

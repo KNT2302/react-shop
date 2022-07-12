@@ -2,66 +2,71 @@ import React from "react";
 import { Formik } from "formik";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
-import "./productUpdate.scss"
+import "./productUpdate.scss";
 
-const ProductUpdate = ({ product }) => {
+const ProductUpdate = ({ product, handleClickUpdate }) => {
   const { dispatch } = useShopContext();
+ const {index, productUpdate: prod} = product
+
   return (
     <div className="productUpdate">
       <Formik
         initialValues={{
-          id: product.id,
-          prodName: product.prodName,
-          price: product.price,
-          quantity: product.quantity,
-          isCarted: product.isCarted,
+          id: prod.id,
+          prodName: prod.prodName,
+          price: prod.price,
+          quantity: prod.quantity,
+          isCarted: prod.isCarted,
         }}
         onSubmit={(values) => {
-          dispatch(actions.updateProduct(values));
+          handleClickUpdate();
+          dispatch(actions.updateProduct({index, newProduct: values}));
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <table>
-              <tr>
-                <th>
-                  <label>Name Product: </label>
-                </th>
-                <th>
-                  <input
-                    type="text"
-                    name="prodName"
-                    onChange={handleChange}
-                    value={values.prodName}
-                  />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <label>Price: </label>
-                </th>
-                <th>
-                  <input
-                    type="number"
-                    name="price"
-                    onChange={handleChange}
-                    value={values.price}
-                  />
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <label>Quantity Available: </label>
-                </th>
-                <th>
-                  <input
-                    type="number"
-                    name="quantity"
-                    onChange={handleChange}
-                    value={values.quantity}
-                  />
-                </th>
-              </tr>
+              <tbody>
+                <tr>
+                  <th>
+                    <label>Name Product: </label>
+                  </th>
+                  <th>
+                    <input
+                      type="text"
+                      name="prodName"
+                      onChange={handleChange}
+                      value={values.prodName}
+                    />
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <label>Price: </label>
+                  </th>
+                  <th>
+                    <input
+                      type="number"
+                      name="price"
+                      onChange={handleChange}
+                      value={values.price}
+                    />
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <label>Quantity Available: </label>
+                  </th>
+                  <th>
+                    <input
+                      type="number"
+                      name="quantity"
+                      onChange={handleChange}
+                      value={values.quantity}
+                    />
+                  </th>
+                </tr>
+              </tbody>
             </table>
 
             <br />

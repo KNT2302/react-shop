@@ -5,24 +5,23 @@ import { useShopContext } from "../../store";
 import { ProductUpdate } from "./prod_update";
 
 const Products = () => {
-  console.log("render");
   const [toggle, setToggle] = useState(true);
   const [isNeededUpdate, setIsNeededUpdate] = useState(false);
   const [product, setProduct] = useState({});
 
   const { state } = useShopContext();
-  console.log(product);
 
   const handleToggle = () => {
     setToggle(!toggle);
+    setIsNeededUpdate(false);
   };
   const handleClickUpdate = () => {
     setIsNeededUpdate(!isNeededUpdate);
   };
 
-  const getProductUpdate = (id) => {
-    const product = state.product.filter((prod) => prod.id === id);
-    setProduct(...product);
+  const getProductUpdate = (index) => {
+    //const findedProduct = state.product.find((prod) => prod.id === id);
+    setProduct({index, productUpdate: state.product[index]});
   };
 
   return (
@@ -36,7 +35,12 @@ const Products = () => {
       ) : (
         <ProductForm handleToggle={handleToggle} />
       )}
-      {isNeededUpdate ? <ProductUpdate product={product} /> : null}
+      {isNeededUpdate ? (
+        <ProductUpdate
+          product={product}
+          handleClickUpdate={handleClickUpdate}
+        />
+      ) : null}
     </div>
   );
 };

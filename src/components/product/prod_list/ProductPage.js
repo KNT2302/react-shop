@@ -5,7 +5,13 @@ import "./product_list.scss";
 const ProductPage = ({ handleToggle, handleClickUpdate, getProductUpdate }) => {
   return (
     <div>
-      <button onClick={handleToggle}>Add product</button>
+      <button
+        onClick={() => {
+          handleToggle();
+        }}
+      >
+        Add product
+      </button>
       <ProdTable
         handleClickUpdate={handleClickUpdate}
         getProductUpdate={getProductUpdate}

@@ -1,2 +1,4 @@
-export {default as ShopProvider} from "./Provider"
-export {useShopContext} from "./useShopContext"
+import ShopProvider from "./Provider"
+import {useShopContext} from "./useShopContext"
+
+export {ShopProvider, useShopContext}

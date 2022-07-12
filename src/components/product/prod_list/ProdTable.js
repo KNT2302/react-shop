@@ -17,7 +17,7 @@ export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
         </tr>
       </thead>
       <tbody>
-        {state.product.map((item) => {
+        {state.product.map((item, index) => {
           return (
             <tr key={item.id}>
               <th>{item.id}</th>
@@ -29,6 +29,7 @@ export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
               </th>
               <th>
                 <ButtonAction
+                indexProduct={index}
                   idProd={item.id}
                   isCarted={item.isCarted}
                   handleClickUpdate={handleClickUpdate}

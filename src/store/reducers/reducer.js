@@ -29,16 +29,11 @@ export const reducer = (state, action) => {
       };
     }
     case UPDATE_PRODUCT: {
-      const newProducts = state.product.map(item =>{
-        if(item.id === action.payload.id)
-          return action.payload
-        else
-          return item
-      })
-      return {
-        ...state,
-        product: newProducts
-      };
+     state.product[action.payload.index] = action.payload.newProduct
+     return {
+      ...state,
+      product: state.product
+     }
     }
     default: {
       return state;
