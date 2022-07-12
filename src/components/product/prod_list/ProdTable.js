@@ -2,7 +2,7 @@ import React from "react";
 import { useShopContext } from "../../../store";
 import { ButtonAction } from "./ButtonAction";
 
-export const ProdTable = () => {
+export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
   const { state } = useShopContext();
   return (
     <table>
@@ -25,10 +25,15 @@ export const ProdTable = () => {
               <th>{item.price}</th>
               <th>{item.quantity}</th>
               <th>
-                <input type="number" />
+                <input type="number" min={1} max={item.quantity} />
               </th>
               <th>
-                <ButtonAction />
+                <ButtonAction
+                  idProd={item.id}
+                  isCarted={item.isCarted}
+                  handleClickUpdate={handleClickUpdate}
+                  getProductUpdate={getProductUpdate}
+                />
               </th>
             </tr>
           );

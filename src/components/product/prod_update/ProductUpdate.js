@@ -4,14 +4,13 @@ import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
 import { useHistory } from "react-router-dom";
 
-export const ProductForm = ({ handleToggle }) => {
+export const ProductUpdate = ({ product }) => {
   const { dispatch } = useShopContext();
   const history = useHistory();
 
   return (
     <div>
-      <button onClick={handleToggle}>Back</button>
-      <br />
+      <h2>Update Product</h2>
       <Formik
         initialValues={{
           id: "",
@@ -29,7 +28,6 @@ export const ProductForm = ({ handleToggle }) => {
             id: getId,
           };
           console.log(newProduct);
-          handleToggle();
           dispatch(actions.addProduct(newProduct));
         }}
       >

@@ -2,7 +2,7 @@ import React from "react";
 import { useShopContext } from "../../store";
 
 const Index = () => {
-  const [state] = useShopContext();
+  const { state } = useShopContext();
   return (
     <div>
       <table>
