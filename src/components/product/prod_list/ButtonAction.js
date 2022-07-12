@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BtnAction = () => {
+export const ButtonAction = () => {
   return (
     <>
       <button>Add to Cart</button>

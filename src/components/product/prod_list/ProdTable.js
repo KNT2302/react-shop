@@ -1,9 +1,9 @@
 import React from "react";
 import { useShopContext } from "../../../store";
-import { BtnAction } from "./BtnAction";
+import { ButtonAction } from "./ButtonAction";
 
 export const ProdTable = () => {
-  const [state] = useShopContext();
+  const { state } = useShopContext();
   return (
     <table>
       <thead>
@@ -28,7 +28,7 @@ export const ProdTable = () => {
                 <input type="number" />
               </th>
               <th>
-                <BtnAction />
+                <ButtonAction />
               </th>
             </tr>
           );

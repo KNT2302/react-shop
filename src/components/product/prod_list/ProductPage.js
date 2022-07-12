@@ -1,7 +1,8 @@
 import React from "react";
 import { ProdTable } from "./ProdTable";
+import "./product_list.scss";
 
-export const index = ({ handleToggle }) => {
+const ProductPage = ({ handleToggle }) => {
   return (
     <div>
       <button onClick={handleToggle}>Add product</button>
@@ -9,3 +10,4 @@ export const index = ({ handleToggle }) => {
     </div>
   );
 };
+export default ProductPage;

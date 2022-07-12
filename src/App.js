@@ -1,5 +1,5 @@
 import { Link, Switch, Route } from "react-router-dom";
-import { Cart, Product } from "./components";
+import { Cart, Products } from "./components";
 
 function App() {
   return (
@@ -8,13 +8,13 @@ function App() {
       <nav>
         <ul>
           <li>
-            <Link to={"/"}>Back to Home</Link>
+            <Link to="/">Back to Home</Link>
           </li>
           <li>
-            <Link to={"/products"}>Products</Link>
+            <Link to="/products">Products</Link>
           </li>
           <li>
-            <Link to={"/cart"}>Cart</Link>
+            <Link to="/cart">Cart</Link>
           </li>
         </ul>
       </nav>
@@ -23,7 +23,7 @@ function App() {
           <div>Hello World!</div>
         </Route>
         <Route path={"/products"}>
-          <Product />
+          <Products />
         </Route>
         <Route path={"/cart"}>
           <Cart />

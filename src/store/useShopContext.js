@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { shopContext } from "./Provider";
+import { ShopContext } from "./Provider";
 
 export const useShopContext = () => {
-  const [state, dispatch] = useContext(shopContext);
+  const { state, dispatch } = useContext(ShopContext);
 
-  return [state, dispatch];
+  return { state, dispatch };
 };

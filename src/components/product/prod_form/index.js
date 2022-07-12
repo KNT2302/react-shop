@@ -1,6 +1,6 @@
 import React from "react";
 
-export const index = ({ handleToggle }) => {
+export const ProductForm = ({ handleToggle }) => {
   return (
     <div>
       <button onClick={handleToggle}>Back</button>
