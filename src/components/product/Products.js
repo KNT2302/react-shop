@@ -8,6 +8,7 @@ const Products = () => {
   const [toggle, setToggle] = useState(true);
   const [isNeededUpdate, setIsNeededUpdate] = useState(false);
   const [product, setProduct] = useState({});
+  const [isAddingToCart, setIsAddingToCart] = useState(null);
 
   const { state } = useShopContext();
 
@@ -24,6 +25,14 @@ const Products = () => {
     setProduct(findedProduct);
   };
 
+  const changeAddingToCart = (idProduct) => {
+    setIsAddingToCart(idProduct);
+  };
+
+  const getIsAddingToCart = () => {
+    return isAddingToCart;
+  };
+
   return (
     <div>
       {toggle ? (
@@ -31,6 +40,8 @@ const Products = () => {
           handleToggle={handleToggle}
           handleClickUpdate={handleClickUpdate}
           getProductUpdate={getProductUpdate}
+          changeAddingToCart={changeAddingToCart}
+          getIsAddingToCart={getIsAddingToCart}
         />
       ) : (
         <ProductForm handleToggle={handleToggle} />

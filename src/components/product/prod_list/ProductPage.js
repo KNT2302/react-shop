@@ -2,7 +2,13 @@ import React from "react";
 import { ProdTable } from "./ProdTable";
 import "./product_list.scss";
 
-const ProductPage = ({ handleToggle, handleClickUpdate, getProductUpdate }) => {
+const ProductPage = ({
+  handleToggle,
+  handleClickUpdate,
+  getProductUpdate,
+  changeAddingToCart,
+  getIsAddingToCart,
+}) => {
   return (
     <div>
       <button
@@ -15,6 +21,8 @@ const ProductPage = ({ handleToggle, handleClickUpdate, getProductUpdate }) => {
       <ProdTable
         handleClickUpdate={handleClickUpdate}
         getProductUpdate={getProductUpdate}
+        changeAddingToCart={changeAddingToCart}
+        getIsAddingToCart={getIsAddingToCart}
       />
     </div>
   );
