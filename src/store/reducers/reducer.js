@@ -33,8 +33,9 @@ export const reducer = (state, action) => {
       let finedProduct = false;
       while (!finedProduct) {
         indexProduct++;
-        if (action.payload.id === state.product[indexProduct].id)
+        if (action.payload.id === state.product[indexProduct].id) {
           finedProduct = true;
+        }
       }
       state.product[indexProduct] = action.payload;
       return {
