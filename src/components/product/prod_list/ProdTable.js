@@ -2,15 +2,8 @@ import React from "react";
 import { useShopContext } from "../../../store";
 import { ProductTableRow } from "./ProductTableRow";
 
-export const ProdTable = ({
-  handleClickUpdate,
-  getProductUpdate,
-  changeAddingToCart,
-  getIsAddingToCart,
-}) => {
+export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
   const { state } = useShopContext();
-
-  const isAddingToCart = getIsAddingToCart();
 
   return (
     <table>
@@ -32,8 +25,6 @@ export const ProdTable = ({
               item={item}
               handleClickUpdate={handleClickUpdate}
               getProductUpdate={getProductUpdate}
-              changeAddingToCart={changeAddingToCart}
-              isAddingToCart={isAddingToCart}
             />
           );
         })}

@@ -11,6 +11,7 @@ export const initState = {
     },
   ],
   cart: [],
+  isPending: false,
 };
 
 export const reducer = (state, action) => {

@@ -3,12 +3,12 @@ import ProductPage from "./prod_list/ProductPage";
 import { ProductForm } from "./prod_form/index";
 import { useShopContext } from "../../store";
 import { ProductUpdate } from "./prod_update";
+import { ButtonActionContext } from "./prod_list/ButtonActionContext";
 
 const Products = () => {
   const [toggle, setToggle] = useState(true);
   const [isNeededUpdate, setIsNeededUpdate] = useState(false);
   const [product, setProduct] = useState({});
-  const [isAddingToCart, setIsAddingToCart] = useState(null);
 
   const { state } = useShopContext();
 
@@ -25,24 +25,16 @@ const Products = () => {
     setProduct(findedProduct);
   };
 
-  const changeAddingToCart = (idProduct) => {
-    setIsAddingToCart(idProduct);
-  };
-
-  const getIsAddingToCart = () => {
-    return isAddingToCart;
-  };
-
   return (
     <div>
       {toggle ? (
-        <ProductPage
-          handleToggle={handleToggle}
-          handleClickUpdate={handleClickUpdate}
-          getProductUpdate={getProductUpdate}
-          changeAddingToCart={changeAddingToCart}
-          getIsAddingToCart={getIsAddingToCart}
-        />
+        <ButtonActionContext>
+          <ProductPage
+            handleToggle={handleToggle}
+            handleClickUpdate={handleClickUpdate}
+            getProductUpdate={getProductUpdate}
+          />
+        </ButtonActionContext>
       ) : (
         <ProductForm handleToggle={handleToggle} />
       )}
