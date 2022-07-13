@@ -1,2 +1,4 @@
-export { default as Products } from "./product/Products";
-export { default as Cart } from "./cart/index";
+import Cart from "./cart/index"
+import Products from "./product/Products"
+
+export { Cart, Products } 

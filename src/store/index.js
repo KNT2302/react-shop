@@ -1,3 +1,5 @@
-export { default as ShopProvider } from "./Provider";
-export { useShopContext } from "./useShopContext";
-export * as actions from "./actions";
+import {reducer} from "./reducers/index";
+import { ShopProvider, useShopContext } from "./context/index";
+import actions from "./actions/index";
+
+export { reducer, ShopProvider, useShopContext, actions };
