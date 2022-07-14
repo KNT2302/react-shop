@@ -12,13 +12,14 @@ export const ButtonAction = ({
 }) => {
   const { dispatch } = useShopContext();
   const { setState } = useBtnsContext();
-  const { added, pending } = cartHandler;
+  const { added, pending, resetQuantity } = cartHandler;
 
   const addProductToCart = () => {
     pending();
     setTimeout(() => {
       dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
       added();
+      resetQuantity();
     }, 1000);
   };
 

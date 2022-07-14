@@ -9,6 +9,10 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
     setQuantity(Number(e.target.value));
   };
 
+  const resetQuantity = () => {
+    setQuantity(1);
+  };
+
   const added = () => {
     setIsAdded(false);
   };
@@ -34,7 +38,7 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
               <input
                 type="number"
                 value={quantity}
-                min={1}
+                min={0}
                 max={item.quantity}
                 onChange={(e) => {
                   handleQuantity(e);
@@ -47,7 +51,7 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
                 idProd={item.id}
                 isCarted={item.isCarted}
                 getProductUpdate={getProductUpdate}
-                cartHandler={{ added, pending }}
+                cartHandler={{ added, pending, resetQuantity }}
               />
             </th>
           </>

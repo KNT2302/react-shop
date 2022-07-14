@@ -51,20 +51,22 @@ export const reducer = (state, action) => {
         product.quantity -= quantityChoose;
       };
 
-      changeQuantityInProduct(productToAdd, quantity);
-
-      productToAdd.isCarted = true;
-
-      if (indexProductInCart === -1) {
-        productToAdd = { ...productToAdd, quantity };
-        return {
-          ...state,
-          cart: [...state.cart, productToAdd],
-        };
+      if (productToAdd.quantity === 0) {
+        alert("Product run out !");
       } else {
-        let quantityInCart = state.cart[indexProductInCart].quantity;
-        quantityInCart += quantity;
-        state.cart[indexProductInCart].quantity = quantityInCart;
+        changeQuantityInProduct(productToAdd, quantity);
+        productToAdd.isCarted = true;
+        if (indexProductInCart === -1) {
+          productToAdd = { ...productToAdd, quantity };
+          return {
+            ...state,
+            cart: [...state.cart, productToAdd],
+          };
+        } else {
+          let quantityInCart = state.cart[indexProductInCart].quantity;
+          quantityInCart += quantity;
+          state.cart[indexProductInCart].quantity = quantityInCart;
+        }
       }
       return state;
     }
