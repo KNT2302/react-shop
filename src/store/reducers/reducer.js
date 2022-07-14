@@ -92,7 +92,6 @@ export const reducer = (state, action) => {
       const prdIdx = state.product.map((v) => v.id).indexOf(id);
       state.product[prdIdx].quantity += state.cart[cartIdx].quantity;
       state.cart.splice(cartIdx, 1);
-      console.log(state.cart);
       return { ...state, nothing: "" };
     }
     default: {
