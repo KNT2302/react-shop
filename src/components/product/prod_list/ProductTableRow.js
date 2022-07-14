@@ -21,6 +21,8 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
     setIsAdded(true);
   };
 
+  const isEnableAddToCart = item.quantity < 1;
+
   return (
     <>
       <tr>
@@ -48,6 +50,7 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
             <th>
               <ButtonAction
                 quantityChoose={quantity}
+                isEnableAddToCart={isEnableAddToCart}
                 idProd={item.id}
                 isCarted={item.isCarted}
                 getProductUpdate={getProductUpdate}

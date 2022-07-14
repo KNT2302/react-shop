@@ -9,6 +9,7 @@ export const ButtonAction = ({
   quantityChoose,
   getProductUpdate,
   cartHandler,
+  isEnableAddToCart,
 }) => {
   const { dispatch } = useShopContext();
   const { setState } = useBtnsContext();
@@ -25,7 +26,9 @@ export const ButtonAction = ({
 
   return (
     <>
-      <button onClick={addProductToCart}>Add to Cart</button>
+      <button onClick={addProductToCart} disabled={isEnableAddToCart}>
+        Add to Cart
+      </button>
       <button disabled={isCarted}>Delete</button>
       <button
         disabled={isCarted}
