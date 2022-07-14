@@ -2,7 +2,7 @@ import React from "react";
 import { useShopContext } from "../../../store";
 import { ProductTableRow } from "./ProductTableRow";
 
-export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
+export const ProdTable = ({ getProductUpdate }) => {
   const { state } = useShopContext();
 
   return (
@@ -23,7 +23,6 @@ export const ProdTable = ({ handleClickUpdate, getProductUpdate }) => {
             <ProductTableRow
               key={item.id}
               item={item}
-              handleClickUpdate={handleClickUpdate}
               getProductUpdate={getProductUpdate}
             />
           );

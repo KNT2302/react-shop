@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { ButtonAction } from "./ButtonAction";
-import { useBtnActionContext } from "./ButtonActionContext";
 
-export const ProductTableRow = ({
-  item,
-  handleClickUpdate,
-  getProductUpdate,
-}) => {
+export const ProductTableRow = ({ item, getProductUpdate }) => {
   const [quantity, setQuantity] = useState(1);
+  const [isAdded, setIsAdded] = useState(false);
 
   const handleQuantity = (e) => {
     setQuantity(Number(e.target.value));
   };
 
-  const { isAddingToCart } = useBtnActionContext();
+  const added = () => {
+    setIsAdded(false);
+  };
+
+  const pending = () => {
+    setIsAdded(true);
+  };
 
   return (
     <>
@@ -22,7 +24,7 @@ export const ProductTableRow = ({
         <th>{item.prodName}</th>
         <th>{item.price}</th>
         <th>{item.quantity}</th>
-        {isAddingToCart ? (
+        {isAdded ? (
           <th colSpan={2} style={{ color: "red" }}>
             Added to cart
           </th>
@@ -44,8 +46,8 @@ export const ProductTableRow = ({
                 quantityChoose={quantity}
                 idProd={item.id}
                 isCarted={item.isCarted}
-                handleClickUpdate={handleClickUpdate}
                 getProductUpdate={getProductUpdate}
+                cartHandler={{ added, pending }}
               />
             </th>
           </>

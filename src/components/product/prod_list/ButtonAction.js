@@ -1,23 +1,24 @@
 import React from "react";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
-import { useBtnActionContext } from "./ButtonActionContext";
+import { useBtnsContext } from "../../context";
 
 export const ButtonAction = ({
   idProd,
   isCarted,
   quantityChoose,
-  handleClickUpdate,
   getProductUpdate,
+  cartHandler,
 }) => {
   const { dispatch } = useShopContext();
-  const { changetoAddingToCart, changetoAddedToCart } = useBtnActionContext();
+  const { setState } = useBtnsContext();
+  const { added, pending } = cartHandler;
 
   const addProductToCart = () => {
-    changetoAddingToCart();
+    pending();
     setTimeout(() => {
       dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
-      changetoAddedToCart();
+      added();
     }, 1000);
   };
 
@@ -29,7 +30,7 @@ export const ButtonAction = ({
         disabled={isCarted}
         onClick={() => {
           getProductUpdate(idProd);
-          handleClickUpdate();
+          setState.handleClickUpdate();
         }}
       >
         Update

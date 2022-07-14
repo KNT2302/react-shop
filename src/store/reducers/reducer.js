@@ -16,15 +16,12 @@ export const initState = {
 
 export const reducer = (state, action) => {
   const findIndexProductById = (id, list) => {
-    let indexProduct = -1;
-    let finedProduct = false;
-    while (!finedProduct) {
-      indexProduct++;
-      if (id === list[indexProduct].id) {
-        finedProduct = true;
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].id === id) {
+        return i;
       }
     }
-    return indexProduct;
+    return -1;
   };
 
   switch (action.type) {
@@ -47,34 +44,29 @@ export const reducer = (state, action) => {
     }
     case ADD_TO_CART: {
       const { id, quantity } = action.payload;
+      const indexProductInCart = findIndexProductById(id, state.cart);
       let productToAdd = state.product[findIndexProductById(id, state.product)];
-      let newState = {};
-      productToAdd.isCarted = true;
-
-      const isAdded = () => {
-        return state.cart.find((item) => item.id === id);
-      };
 
       const changeQuantityInProduct = (product, quantityChoose) => {
         product.quantity -= quantityChoose;
       };
+
       changeQuantityInProduct(productToAdd, quantity);
 
-      if (!isAdded()) {
+      productToAdd.isCarted = true;
+
+      if (indexProductInCart === -1) {
         productToAdd = { ...productToAdd, quantity };
-        newState = {
+        return {
           ...state,
           cart: [...state.cart, productToAdd],
         };
       } else {
-        let quantityInCart =
-          state.cart[findIndexProductById(id, state.cart)].quantity;
+        let quantityInCart = state.cart[indexProductInCart].quantity;
         quantityInCart += quantity;
-        state.cart[findIndexProductById(id, state.cart)].quantity =
-          quantityInCart;
-        newState = state;
+        state.cart[indexProductInCart].quantity = quantityInCart;
       }
-      return newState;
+      return state;
     }
     default: {
       return state;
