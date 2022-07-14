@@ -9,10 +9,6 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
     setQuantity(Number(e.target.value));
   };
 
-  const resetQuantity = () => {
-    setQuantity(1);
-  };
-
   const added = () => {
     setIsAdded(false);
   };
@@ -54,7 +50,7 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
                 idProd={item.id}
                 isCarted={item.isCarted}
                 getProductUpdate={getProductUpdate}
-                cartHandler={{ added, pending, resetQuantity }}
+                cartHandler={{ added, pending }}
               />
             </th>
           </>

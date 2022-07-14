@@ -84,6 +84,7 @@ export const reducer = (state, action) => {
         ];
       }
       state.product[prdIdx].quantity -= +quantity;
+      state.product[prdIdx].isCarted = true;
       return state;
     }
     case REMOVE_FROM_CART: {
@@ -92,6 +93,7 @@ export const reducer = (state, action) => {
       const prdIdx = state.product.map((v) => v.id).indexOf(id);
       state.product[prdIdx].quantity += state.cart[cartIdx].quantity;
       state.cart.splice(cartIdx, 1);
+      state.product[prdIdx].isCarted = false;
       return { ...state, nothing: "" };
     }
     default: {
