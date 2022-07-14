@@ -4,6 +4,7 @@ import { ButtonAction } from "./ButtonAction";
 export const ProductTableRow = ({ item, getProductUpdate }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
+  const [isAdjust, setIsAdjust] = useState(false);
 
   const handleQuantity = (e) => {
     setQuantity(Number(e.target.value));
@@ -15,6 +16,10 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
 
   const pending = () => {
     setIsAdded(true);
+  };
+
+  const changeIsAdjust = () => {
+    setIsAdjust(!isAdjust);
   };
 
   const isEnableAddToCart = item.quantity < 1;
@@ -48,9 +53,8 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
                 quantityChoose={quantity}
                 isEnableAddToCart={isEnableAddToCart}
                 idProd={item.id}
-                isCarted={item.isCarted}
                 getProductUpdate={getProductUpdate}
-                cartHandler={{ added, pending }}
+                cartHandler={{ isAdjust, added, pending, changeIsAdjust }}
               />
             </th>
           </>

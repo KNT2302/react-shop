@@ -84,17 +84,13 @@ export const reducer = (state, action) => {
         ];
       }
       state.product[prdIdx].quantity -= +quantity;
-      state.product[prdIdx].isCarted = true;
-      return state;
+      return { ...state };
     }
     case REMOVE_FROM_CART: {
-      const id = action.payload;
-      const cartIdx = state.cart.map((v) => v.id).indexOf(id);
+      const { id, quantity } = action.payload;
       const prdIdx = state.product.map((v) => v.id).indexOf(id);
-      state.product[prdIdx].quantity += state.cart[cartIdx].quantity;
-      state.cart.splice(cartIdx, 1);
-      state.product[prdIdx].isCarted = false;
-      return { ...state, nothing: "" };
+      state.product[prdIdx].quantity += quantity;
+      return { ...state, cart: state.cart.filter((v) => v.id !== id) };
     }
     default: {
       return state;

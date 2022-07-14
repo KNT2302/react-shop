@@ -31,7 +31,7 @@ const Index = () => {
                 <th>
                   <button
                     onClick={() => {
-                      removeFromCart(item.id);
+                      removeFromCart({ id: item.id, quantity: item.quantity });
                     }}
                   >
                     Remove
