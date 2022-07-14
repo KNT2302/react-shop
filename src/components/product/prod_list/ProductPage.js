@@ -1,21 +1,20 @@
 import React from "react";
 import { ProdTable } from "./ProdTable";
 import "./product_list.scss";
+import { useBtnsContext } from "../../context";
 
-const ProductPage = ({ handleToggle, handleClickUpdate, getProductUpdate }) => {
+const ProductPage = ({ getProductUpdate }) => {
+  const { setState } = useBtnsContext();
   return (
     <div>
       <button
         onClick={() => {
-          handleToggle();
+          setState.handleToggle();
         }}
       >
         Add product
       </button>
-      <ProdTable
-        handleClickUpdate={handleClickUpdate}
-        getProductUpdate={getProductUpdate}
-      />
+      <ProdTable getProductUpdate={getProductUpdate} />
     </div>
   );
 };

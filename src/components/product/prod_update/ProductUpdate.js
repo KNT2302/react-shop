@@ -1,11 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
-import { useShopContext } from "../../../store";
-import { actions } from "../../../store";
+import { useShopContext, actions } from "../../../store";
+import { useBtnsContext } from "../../context";
 import "./productUpdate.scss";
 
-const ProductUpdate = ({ product, handleClickUpdate }) => {
+const ProductUpdate = ({ product }) => {
   const { dispatch } = useShopContext();
+  const { setState } = useBtnsContext();
 
   return (
     <div className="productUpdate">
@@ -18,7 +19,7 @@ const ProductUpdate = ({ product, handleClickUpdate }) => {
           isCarted: product.isCarted,
         }}
         onSubmit={(values) => {
-          handleClickUpdate();
+          setState.handleClickUpdate();
           dispatch(actions.updateProduct(values));
         }}
       >

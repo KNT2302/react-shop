@@ -3,21 +3,13 @@ import ProductPage from "./prod_list/ProductPage";
 import { ProductForm } from "./prod_form/index";
 import { useShopContext } from "../../store";
 import { ProductUpdate } from "./prod_update";
+import { useBtnsContext } from "../context";
 
 const Products = () => {
-  const [toggle, setToggle] = useState(true);
-  const [isNeededUpdate, setIsNeededUpdate] = useState(false);
   const [product, setProduct] = useState({});
 
   const { state } = useShopContext();
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-    setIsNeededUpdate(false);
-  };
-  const handleClickUpdate = () => {
-    setIsNeededUpdate(!isNeededUpdate);
-  };
+  const { state: buttonState } = useBtnsContext();
 
   const getProductUpdate = (id) => {
     const findedProduct = state.product.find((prod) => prod.id === id);
@@ -26,21 +18,12 @@ const Products = () => {
 
   return (
     <div>
-      {toggle ? (
-        <ProductPage
-          handleToggle={handleToggle}
-          handleClickUpdate={handleClickUpdate}
-          getProductUpdate={getProductUpdate}
-        />
+      {buttonState.isToggleForm ? (
+        <ProductPage getProductUpdate={getProductUpdate} />
       ) : (
-        <ProductForm handleToggle={handleToggle} />
+        <ProductForm />
       )}
-      {isNeededUpdate ? (
-        <ProductUpdate
-          product={product}
-          handleClickUpdate={handleClickUpdate}
-        />
-      ) : null}
+      {buttonState.isNeededUpdate ? <ProductUpdate product={product} /> : null}
     </div>
   );
 };

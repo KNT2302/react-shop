@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, UPDATE_PRODUCT } from "./constants";
+import { ADD_PRODUCT, ADD_TO_CART, UPDATE_PRODUCT } from "./constants";
 
 export const addProduct = (payload) => {
   return {
@@ -10,6 +10,13 @@ export const addProduct = (payload) => {
 export const updateProduct = (payload) => {
   return {
     type: UPDATE_PRODUCT,
+    payload,
+  };
+};
+
+export const addToCart = (payload) => {
+  return {
+    type: ADD_TO_CART,
     payload,
   };
 };

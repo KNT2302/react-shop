@@ -2,13 +2,15 @@ import React from "react";
 import { Formik } from "formik";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
+import { useBtnsContext } from "../../context";
 
-export const ProductForm = ({ handleToggle }) => {
+export const ProductForm = () => {
   const { dispatch } = useShopContext();
+  const { setState } = useBtnsContext();
 
   return (
     <div>
-      <button onClick={handleToggle}>Back</button>
+      <button onClick={setState.handleToggle}>Back</button>
       <br />
       <Formik
         initialValues={{
@@ -25,7 +27,7 @@ export const ProductForm = ({ handleToggle }) => {
             ...values,
             id: getId,
           };
-          handleToggle();
+          setState.handleToggle();
           dispatch(actions.addProduct(newProduct));
         }}
       >
