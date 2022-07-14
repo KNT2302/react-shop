@@ -44,28 +44,37 @@ export const reducer = (state, action) => {
     }
     case ADD_TO_CART: {
       const { id, quantity } = action.payload
-      const indexProductInCart = findIndexProductById(id, state.cart)
-      let productToAdd = state.product[findIndexProductById(id, state.product)]
-
-      const changeQuantityInProduct = (product, quantityChoose) => {
-        product.quantity -= quantityChoose
+      // const { id, quantity } = action.payload
+      //       const indexProductInCart = findIndexProductById(id, state.cart)
+      //       let productToAdd = state.product[findIndexProductById(id, state.product)]
+      // 
+      //       const changeQuantityInProduct = (product, quantityChoose) => {
+      //         product.quantity -= quantityChoose
+      //       }
+      // 
+      //       if (productToAdd.quantity !== 0) {
+      //         changeQuantityInProduct(productToAdd, quantity)
+      //         productToAdd.isCarted = true
+      //         if (indexProductInCart === -1) {
+      //           productToAdd = { ...productToAdd, quantity }
+      //           return {
+      //             ...state,
+      //             cart: [...state.cart, productToAdd],
+      //           }
+      //         } else {
+      //           let quantityInCart = state.cart[indexProductInCart].quantity
+      //           quantityInCart += quantity
+      //           state.cart[indexProductInCart].quantity = quantityInCart
+      //         }
+      //       }
+      const cartIdx = state.cart.map(v => v.id).indexOf(id)
+      const prdIdx = state.product.map(v => v.id).indexOf(id)
+      if (cartIdx >= 0) {
+        state.cart[cartIdx].quantity = +state.cart[cartIdx].quantity + +quantity
+      } else {
+        state.cart = [...state.cart, action.payload]
       }
-
-      if (productToAdd.quantity !== 0) {
-        changeQuantityInProduct(productToAdd, quantity)
-        productToAdd.isCarted = true
-        if (indexProductInCart === -1) {
-          productToAdd = { ...productToAdd, quantity }
-          return {
-            ...state,
-            cart: [...state.cart, productToAdd],
-          }
-        } else {
-          let quantityInCart = state.cart[indexProductInCart].quantity
-          quantityInCart += quantity
-          state.cart[indexProductInCart].quantity = quantityInCart
-        }
-      }
+      state.product[prdIdx].quantity -= +quantity
       return state
     }
     default: {
