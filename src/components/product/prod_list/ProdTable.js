@@ -4,7 +4,6 @@ import { ProductTableRow } from "./ProductTableRow";
 
 export const ProdTable = ({ getProductUpdate }) => {
   const { state } = useShopContext();
-
   return (
     <table>
       <thead>
