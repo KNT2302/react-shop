@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { ButtonAction } from "./ButtonAction";
-import { useShopContext } from "../../../store";
 
 export const ProductTableRow = ({ item, getProductUpdate, indexItem }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
-  const { state } = useShopContext();
 
   const handleQuantity = (e) => {
     setQuantity(Number(e.target.value));
@@ -18,8 +16,6 @@ export const ProductTableRow = ({ item, getProductUpdate, indexItem }) => {
   const pending = () => {
     setIsAdded(true);
   };
-
-  const isCarted = state.cart.find((v) => v.id === item.id);
 
   const isEnableAddToCart = item.quantity < 1;
 
@@ -53,7 +49,7 @@ export const ProductTableRow = ({ item, getProductUpdate, indexItem }) => {
                 isEnableAddToCart={isEnableAddToCart}
                 idProd={item.id}
                 getProductUpdate={getProductUpdate}
-                cartHandler={{ added, pending, isCarted }}
+                cartHandler={{ added, pending }}
               />
             </th>
           </>

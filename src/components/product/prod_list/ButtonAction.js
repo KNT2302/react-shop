@@ -9,9 +9,9 @@ export const ButtonAction = ({
   cartHandler,
   isEnableAddToCart,
 }) => {
-  const { dispatch } = useShopContext();
+  const { state, dispatch } = useShopContext();
   const { setState } = useBtnsContext();
-  const { added, pending, isCarted } = cartHandler;
+  const { added, pending } = cartHandler;
 
   const addProductToCart = () => {
     pending();
@@ -20,6 +20,8 @@ export const ButtonAction = ({
       added();
     }, 1000);
   };
+
+  const isCarted = state.cart.find((v) => v.id === idProd);
 
   return (
     <>
