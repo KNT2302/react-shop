@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   REMOVE_FROM_CART,
   UPDATE_PRODUCT,
+  REMOVE_PRODUCT,
 } from "../actions/constants";
 
 export const initState = {
@@ -44,6 +45,15 @@ export const reducer = (state, action) => {
       return {
         ...state,
         product: state.product,
+      };
+    }
+    case REMOVE_PRODUCT: {
+      const newProduct = state.product.filter((v) => v.id !== action.payload);
+
+      console.log(newProduct);
+      return {
+        ...state,
+        product: newProduct,
       };
     }
     case ADD_TO_CART: {
