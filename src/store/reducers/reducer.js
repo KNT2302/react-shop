@@ -12,7 +12,6 @@ export const initState = {
       prodName: "Product1",
       price: 20000,
       quantity: 18,
-      isCarted: false,
     },
   ],
   cart: [],
