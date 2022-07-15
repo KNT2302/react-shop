@@ -1,28 +1,27 @@
-import React from "react";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
 
 export const ButtonAction = ({
   idProd,
-  isCarted,
   quantityChoose,
   getProductUpdate,
   cartHandler,
   isEnableAddToCart,
 }) => {
-  const { dispatch } = useShopContext();
+  const { state, dispatch } = useShopContext();
   const { setState } = useBtnsContext();
-  const { added, pending, resetQuantity } = cartHandler;
+  const { added, pending } = cartHandler;
 
   const addProductToCart = () => {
     pending();
     setTimeout(() => {
       dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
       added();
-      resetQuantity();
     }, 1000);
   };
+
+  const isCarted = state.cart.find((v) => v.id === idProd);
 
   return (
     <>

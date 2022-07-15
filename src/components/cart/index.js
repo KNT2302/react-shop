@@ -1,8 +1,13 @@
 import React from "react";
-import {useShopContext} from "../../store"
+import { actions, useShopContext } from "../../store";
 
 const Index = () => {
-  const { state } = useShopContext();
+  const { state, dispatch } = useShopContext();
+
+  const removeFromCart = (id) => {
+    dispatch(actions.removeFromCart(id));
+  };
+
   return (
     <div>
       <table>
@@ -24,7 +29,13 @@ const Index = () => {
                 <th>{item.price}</th>
                 <th>{item.quantity}</th>
                 <th>
-                  <button>Remove</button>
+                  <button
+                    onClick={() => {
+                      removeFromCart({ id: item.id, quantity: item.quantity });
+                    }}
+                  >
+                    Remove
+                  </button>
                 </th>
               </tr>
             );

@@ -4,7 +4,6 @@ import { ProductTableRow } from "./ProductTableRow";
 
 export const ProdTable = ({ getProductUpdate }) => {
   const { state } = useShopContext();
-
   return (
     <table>
       <thead>
@@ -18,11 +17,12 @@ export const ProdTable = ({ getProductUpdate }) => {
         </tr>
       </thead>
       <tbody>
-        {state.product.map((item) => {
+        {state.product.map((item, index) => {
           return (
             <ProductTableRow
               key={item.id}
               item={item}
+              indexItem={index}
               getProductUpdate={getProductUpdate}
             />
           );

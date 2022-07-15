@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { ButtonAction } from "./ButtonAction";
 
-export const ProductTableRow = ({ item, getProductUpdate }) => {
+export const ProductTableRow = ({ item, getProductUpdate, indexItem }) => {
   const [quantity, setQuantity] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
 
   const handleQuantity = (e) => {
     setQuantity(Number(e.target.value));
-  };
-
-  const resetQuantity = () => {
-    setQuantity(1);
   };
 
   const added = () => {
@@ -52,9 +48,8 @@ export const ProductTableRow = ({ item, getProductUpdate }) => {
                 quantityChoose={quantity}
                 isEnableAddToCart={isEnableAddToCart}
                 idProd={item.id}
-                isCarted={item.isCarted}
                 getProductUpdate={getProductUpdate}
-                cartHandler={{ added, pending, resetQuantity }}
+                cartHandler={{ added, pending }}
               />
             </th>
           </>
