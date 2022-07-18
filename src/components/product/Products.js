@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductPage from "./prod_list/ProductPage";
-import { ProductForm } from "./prod_form/index";
+import { FormProduct } from "./prod_form/FormProduct";
 import { useShopContext } from "../../store";
 import { ProductUpdate } from "./prod_update";
 import { useBtnsContext } from "../context";
@@ -21,7 +21,7 @@ const Products = () => {
       {buttonState.isToggleForm ? (
         <ProductPage getProductUpdate={getProductUpdate} />
       ) : (
-        <ProductForm />
+        <FormProduct />
       )}
       {buttonState.isNeededUpdate ? <ProductUpdate product={product} /> : null}
     </div>
