@@ -1,4 +1,3 @@
-import ShopProvider from "./Provider"
-import {useShopContext} from "./useShopContext"
+import { ShopContext, useShopContext, ShopProvider } from "./Provider"
 
-export {ShopProvider, useShopContext}
+export { ShopProvider, useShopContext, ShopContext }

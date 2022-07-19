@@ -1,5 +1,5 @@
-import { Link, Switch, Route } from "react-router-dom";
-import { Cart, Products } from "./components";
+import { Link, Switch, Route } from "react-router-dom"
+import { CartPage, Products } from "./components"
 
 function App() {
   return (
@@ -26,11 +26,11 @@ function App() {
           <Products />
         </Route>
         <Route path={"/cart"}>
-          <Cart />
+          <CartPage />
         </Route>
       </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

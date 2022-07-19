@@ -1,18 +1,18 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react"
 
-export const BtnContext = createContext();
+export const BtnContext = createContext({})
 
 export const ButtonActionProvider = ({ children }) => {
-  const [isToggleForm, setIsToggleForm] = useState(true);
-  const [isNeededUpdate, setIsNeededUpdate] = useState(false);
+  const [isToggleForm, setIsToggleForm] = useState(true)
+  const [isNeededUpdate, setIsNeededUpdate] = useState(false)
 
   const handleToggle = () => {
-    setIsToggleForm(!isToggleForm);
-  };
+    setIsToggleForm(!isToggleForm)
+  }
 
   const handleClickUpdate = () => {
-    setIsNeededUpdate(!isNeededUpdate);
-  };
+    setIsNeededUpdate(!isNeededUpdate)
+  }
 
   const values = {
     state: { isToggleForm, isNeededUpdate },
@@ -20,12 +20,12 @@ export const ButtonActionProvider = ({ children }) => {
       handleToggle,
       handleClickUpdate,
     },
-  };
-  return <BtnContext.Provider value={values}>{children}</BtnContext.Provider>;
-};
+  }
+  return <BtnContext.Provider value={values}>{children}</BtnContext.Provider>
+}
 
 export const useBtnsContext = () => {
-  const { state, setState } = useContext(BtnContext);
+  const { state, setState } = useContext(BtnContext)
 
-  return { state, setState };
-};
+  return { state, setState }
+}

@@ -1,15 +1,15 @@
-import React from "react";
-import { actions, useShopContext } from "../../store";
+import React from "react"
+import { actions, useShopContext } from "../../store"
 
-const Index = () => {
-  const { state, dispatch } = useShopContext();
+const CartPage = () => {
+  const { state, dispatch } = useShopContext()
 
   const removeFromCart = (id) => {
-    dispatch(actions.removeFromCart(id));
-  };
+    dispatch(actions.removeFromCart(id))
+  }
 
   return (
-    <div>
+    <div data-testid="cart-test">
       <table>
         <thead>
           <tr>
@@ -21,7 +21,7 @@ const Index = () => {
           </tr>
         </thead>
         <tbody>
-          {state.cart.map((item) => {
+          {state?.cart.map((item) => {
             return (
               <tr key={item.id}>
                 <th>{item.id}</th>
@@ -31,19 +31,19 @@ const Index = () => {
                 <th>
                   <button
                     onClick={() => {
-                      removeFromCart({ id: item.id, quantity: item.quantity });
+                      removeFromCart({ id: item.id, quantity: item.quantity })
                     }}
                   >
                     Remove
                   </button>
                 </th>
               </tr>
-            );
+            )
           })}
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default CartPage

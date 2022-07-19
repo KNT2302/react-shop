@@ -1,16 +1,16 @@
-import React from "react";
-import { Formik } from "formik";
-import { useShopContext } from "../../../store";
-import { actions } from "../../../store";
-import { useBtnsContext } from "../../context";
+import React from "react"
+import { Formik } from "formik"
+import { useShopContext } from "../../../store"
+import { actions } from "../../../store"
+import { useBtnsContext } from "../../context"
 
 export const ProductForm = () => {
-  const { dispatch } = useShopContext();
-  const { setState } = useBtnsContext();
+  const { dispatch } = useShopContext()
+  const { setState } = useBtnsContext()
 
   return (
     <div>
-      <button onClick={setState.handleToggle}>Back</button>
+      <button onClick={setState?.handleToggle}>Back</button>
       <br />
       <Formik
         initialValues={{
@@ -21,14 +21,14 @@ export const ProductForm = () => {
           isCarted: false,
         }}
         onSubmit={(values) => {
-          const id = Math.random() + "";
-          const getId = id.slice(id.length - 4);
+          const id = Math.random() + ""
+          const getId = id.slice(id.length - 4)
           const newProduct = {
             ...values,
             id: getId,
-          };
-          setState.handleToggle();
-          dispatch(actions.addProduct(newProduct));
+          }
+          setState.handleToggle()
+          dispatch(actions.addProduct(newProduct))
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
@@ -68,5 +68,5 @@ export const ProductForm = () => {
         )}
       </Formik>
     </div>
-  );
-};
+  )
+}

@@ -4,7 +4,7 @@ import {
   REMOVE_FROM_CART,
   UPDATE_PRODUCT,
   REMOVE_PRODUCT,
-} from "../actions/constants";
+} from "../actions/constants"
 
 export const initState = {
   product: [
@@ -17,47 +17,45 @@ export const initState = {
   ],
   cart: [],
   isPending: false,
-};
+}
 
 export const reducer = (state, action) => {
   const findIndexProductById = (id, list) => {
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0;i < list.length;i++) {
       if (list[i].id === id) {
-        return i;
+        return i
       }
     }
-    return -1;
-  };
+    return -1
+  }
 
   switch (action.type) {
     case ADD_PRODUCT: {
       return {
         ...state,
         product: [...state.product, action.payload],
-      };
+      }
     }
     case UPDATE_PRODUCT: {
       const indexProduct = findIndexProductById(
         action.payload.id,
         state.product
-      );
-      state.product[indexProduct] = action.payload;
+      )
+      state.product[indexProduct] = action.payload
       return {
         ...state,
         product: state.product,
-      };
+      }
     }
     case REMOVE_PRODUCT: {
-      const newProduct = state.product.filter((v) => v.id !== action.payload);
-
-      console.log(newProduct);
+      const newProduct = state.product.filter((v) => v.id !== action.payload)
       return {
         ...state,
         product: newProduct,
-      };
+      }
     }
     case ADD_TO_CART: {
-      const { id, quantity } = action.payload;
+      const { id, quantity } = action.payload
       // const { id, quantity } = action.payload
       //       const indexProductInCart = findIndexProductById(id, state.cart)
       //       let productToAdd = state.product[findIndexProductById(id, state.product)]
@@ -81,28 +79,28 @@ export const reducer = (state, action) => {
       //           state.cart[indexProductInCart].quantity = quantityInCart
       //         }
       //       }
-      const cartIdx = state.cart.map((v) => v.id).indexOf(id);
-      const prdIdx = state.product.map((v) => v.id).indexOf(id);
+      const cartIdx = state.cart.map((v) => v.id).indexOf(id)
+      const prdIdx = state.product.map((v) => v.id).indexOf(id)
       if (cartIdx >= 0) {
         state.cart[cartIdx].quantity =
-          +state.cart[cartIdx].quantity + +quantity;
+          +state.cart[cartIdx].quantity + +quantity
       } else {
         state.cart = [
           ...state.cart,
           { ...state.product[prdIdx], quantity: action.payload.quantity },
-        ];
+        ]
       }
-      state.product[prdIdx].quantity -= +quantity;
-      return { ...state };
+      state.product[prdIdx].quantity -= +quantity
+      return { ...state }
     }
     case REMOVE_FROM_CART: {
-      const { id, quantity } = action.payload;
-      const prdIdx = state.product.map((v) => v.id).indexOf(id);
-      state.product[prdIdx].quantity += quantity;
-      return { ...state, cart: state.cart.filter((v) => v.id !== id) };
+      const { id, quantity } = action.payload
+      const prdIdx = state.product.map((v) => v.id).indexOf(id)
+      state.product[prdIdx].quantity += quantity
+      return { ...state, cart: state.cart.filter((v) => v.id !== id) }
     }
     default: {
-      return state;
+      return state
     }
   }
-};
+}

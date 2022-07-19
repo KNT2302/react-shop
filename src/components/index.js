@@ -1,4 +1,4 @@
-import Cart from "./cart/index"
+import CartPage from "./cart/CartPage"
 import Products from "./product/Products"
 
-export { Cart, Products } 
+export { CartPage, Products } 
