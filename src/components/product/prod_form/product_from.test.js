@@ -54,7 +54,8 @@ test("Add new product", async () => {
 
   await waitFor(() => {
     expect(screen.getByText("Pepsi")).toBeInTheDocument();
-    expect(screen.getByText("2000")).toBeInTheDocument();
-    expect(screen.getByText("2")).toBeInTheDocument();
   });
+
+  expect(screen.getByText("2000")).toBeInTheDocument();
+  expect(screen.getByText("2")).toBeInTheDocument();
 });

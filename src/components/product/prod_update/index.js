@@ -1,3 +1,3 @@
-import ProductUpdate from "./ProductUpdate"
+import ProductUpdate from "./ProductUpdate";
 
-export {ProductUpdate}
+export { ProductUpdate };

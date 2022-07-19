@@ -49,8 +49,6 @@ export const reducer = (state, action) => {
     }
     case REMOVE_PRODUCT: {
       const newProduct = state.product.filter((v) => v.id !== action.payload);
-
-      console.log(newProduct);
       return {
         ...state,
         product: newProduct,

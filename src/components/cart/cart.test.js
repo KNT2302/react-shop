@@ -4,7 +4,6 @@ import { ShopProvider } from "../../store";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ButtonActionProvider } from "../context";
 import userEvent from "@testing-library/user-event";
-import Cart from "./Cart";
 
 beforeEach(() => {
   render(

@@ -3,24 +3,28 @@ import { Formik } from "formik";
 import { useShopContext, actions } from "../../../store";
 import { useBtnsContext } from "../../context";
 import "./productUpdate.scss";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const ProductUpdate = ({ product }) => {
-  const { dispatch } = useShopContext();
+const ProductUpdate = () => {
+  const { state, dispatch } = useShopContext();
   const { setState } = useBtnsContext();
+  const { id } = useParams();
+  const { product } = state;
+
+  const history = useHistory();
+
+  const getProduct = () => product.find((v) => v.id === id);
 
   return (
     <div className="productUpdate">
+      <h2>Update Product Page</h2>
       <Formik
-        initialValues={{
-          id: product.id,
-          prodName: product.prodName,
-          price: product.price,
-          quantity: product.quantity,
-          isCarted: product.isCarted,
-        }}
+        initialValues={getProduct()}
         onSubmit={(values) => {
           setState.handleClickUpdate();
           dispatch(actions.updateProduct(values));
+          history.push("/products");
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
@@ -42,10 +46,11 @@ const ProductUpdate = ({ product }) => {
                 </tr>
                 <tr>
                   <th>
-                    <label>Price: </label>
+                    <label htmlFor="price">Price:</label>
                   </th>
                   <th>
                     <input
+                      placeholder="price"
                       type="number"
                       name="price"
                       onChange={handleChange}
@@ -59,6 +64,7 @@ const ProductUpdate = ({ product }) => {
                   </th>
                   <th>
                     <input
+                      placeholder="quantity"
                       type="number"
                       name="quantity"
                       onChange={handleChange}

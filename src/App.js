@@ -1,7 +1,10 @@
 import { Link, Switch, Route } from "react-router-dom";
+import ProductUpdate from "./components/product/prod_update/ProductUpdate";
 import { Cart, Products } from "./components";
+import { useShopContext, actions } from "./store";
 
 function App() {
+  const { state } = useShopContext();
   return (
     <div className="App">
       <h1>Welcome to my shop</h1>
@@ -24,11 +27,14 @@ function App() {
         <Route exact path={"/"}>
           <div>Hello World!</div>
         </Route>
-        <Route path={"/products"}>
+        <Route exact path={"/products"}>
           <Products />
         </Route>
         <Route path={"/cart"}>
           <Cart />
+        </Route>
+        <Route path="/products/:id">
+          <ProductUpdate />
         </Route>
       </Switch>
     </div>
