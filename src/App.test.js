@@ -1,8 +1,17 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render } from "@testing-library/react";
+import App from "./App";
+import { ShopProvider } from "./store";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ButtonActionProvider } from "./components/context";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("render app", () => {
+  render(
+    <Router>
+      <ShopProvider>
+        <ButtonActionProvider>
+          <App />
+        </ButtonActionProvider>
+      </ShopProvider>
+    </Router>
+  );
 });

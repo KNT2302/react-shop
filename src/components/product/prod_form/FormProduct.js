@@ -4,10 +4,20 @@ import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
 
-export const ProductForm = () => {
+export const FormProduct = () => {
   const { dispatch } = useShopContext();
   const { setState } = useBtnsContext();
 
+  const addNewProduct = (values) => {
+    const id = Math.random() + "";
+    const getId = id.slice(id.length - 4);
+    const newProduct = {
+      ...values,
+      id: getId,
+    };
+    setState.handleToggle();
+    dispatch(actions.addProduct(newProduct));
+  };
   return (
     <div>
       <button onClick={setState.handleToggle}>Back</button>
@@ -20,16 +30,7 @@ export const ProductForm = () => {
           quantity: "",
           isCarted: false,
         }}
-        onSubmit={(values) => {
-          const id = Math.random() + "";
-          const getId = id.slice(id.length - 4);
-          const newProduct = {
-            ...values,
-            id: getId,
-          };
-          setState.handleToggle();
-          dispatch(actions.addProduct(newProduct));
-        }}
+        onSubmit={(values) => addNewProduct(values)}
       >
         {({ values, handleChange, handleSubmit }) => (
           <form onSubmit={handleSubmit}>

@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
@@ -16,10 +16,8 @@ export const ButtonAction = ({
 
   const addProductToCart = () => {
     pending();
-    setTimeout(() => {
-      dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
-      added();
-    }, 1000);
+    dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
+    setTimeout(() => added(), 1000);
   };
 
   const removeProduct = (id) => {
