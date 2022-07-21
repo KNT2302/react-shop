@@ -1,4 +1,5 @@
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
+import { Link } from "react-router-dom";
 import { useShopContext } from "../../../store";
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
@@ -6,7 +7,6 @@ import { useBtnsContext } from "../../context";
 export const ButtonAction = ({
   idProd,
   quantityChoose,
-  getProductUpdate,
   cartHandler,
   isEnableAddToCart,
 }) => {
@@ -42,15 +42,16 @@ export const ButtonAction = ({
       >
         Delete
       </button>
-      <button
-        disabled={isCarted()}
-        onClick={() => {
-          getProductUpdate(idProd);
-          setState.handleClickUpdate();
-        }}
-      >
-        Update
-      </button>
+      <Link to={`/products/${idProd}`}>
+        <button
+          disabled={isCarted()}
+          onClick={() => {
+            setState.handleClickUpdate();
+          }}
+        >
+          Update
+        </button>
+      </Link>
     </>
   );
 };
