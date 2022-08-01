@@ -2,18 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { ShopProvider } from "./store";
+import store from "./store/index";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ButtonActionProvider } from "./components/context";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
-    <ShopProvider>
+    <Provider store={store}>
       <ButtonActionProvider>
         <App />
       </ButtonActionProvider>
-    </ShopProvider>
+    </Provider>
   </Router>
 );
 

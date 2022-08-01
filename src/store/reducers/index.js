@@ -1,3 +1,3 @@
-import { initState, reducer } from "./reducer"
+import { reducers } from "./reducers";
 
-export {initState, reducer}
+export { reducers };

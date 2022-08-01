@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
-import { useShopContext } from "../../../store";
+import { useDispatch } from "react-redux";
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
 
-export const ProductForm = () => {
-  const { dispatch } = useShopContext();
+export const FormProduct = () => {
+  const dispatch = useDispatch();
   const { setState } = useBtnsContext();
 
   return (
@@ -28,7 +28,7 @@ export const ProductForm = () => {
             id: getId,
           };
           setState.handleToggle();
-          dispatch(actions.addProduct(newProduct));
+          dispatch(actions.productActions.addProduct(newProduct));
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
