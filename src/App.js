@@ -5,7 +5,8 @@ import { useShopContext, actions } from "./store";
 
 function App() {
   const { state } = useShopContext();
-  console.log("Fix me to avoid conflict")
+
+  console.log(state);
   return (
     <div className="App">
       <h1>Welcome to my shop</h1>
