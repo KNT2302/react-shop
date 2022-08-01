@@ -1,11 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
-import { useShopContext, actions } from "../../../store";
+import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
 import "./productUpdate.scss";
+import { useDispatch } from "react-redux/es/exports";
 
 const ProductUpdate = ({ product }) => {
-  const { dispatch } = useShopContext();
+  const dispatch = useDispatch();
   const { setState } = useBtnsContext();
 
   return (
@@ -20,7 +21,7 @@ const ProductUpdate = ({ product }) => {
         }}
         onSubmit={(values) => {
           setState.handleClickUpdate();
-          dispatch(actions.updateProduct(values));
+          dispatch(actions.productActions.updateProduct(values));
         }}
       >
         {({ values, handleChange, handleSubmit }) => (

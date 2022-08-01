@@ -1,11 +1,14 @@
 import React from "react";
-import { actions, useShopContext } from "../../store";
+import { actions } from "../../store";
+import { useDispatch } from "react-redux/es/exports";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const Index = () => {
-  const { state, dispatch } = useShopContext();
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
 
-  const removeFromCart = (id) => {
-    dispatch(actions.removeFromCart(id));
+  const removeFromCart = (id, quantity) => {
+    dispatch(actions.cartActions.removeFromCart(id, quantity));
   };
 
   return (
@@ -21,7 +24,7 @@ const Index = () => {
           </tr>
         </thead>
         <tbody>
-          {state.cart.map((item) => {
+          {cart.map((item) => {
             return (
               <tr key={item.id}>
                 <th>{item.id}</th>
@@ -31,7 +34,7 @@ const Index = () => {
                 <th>
                   <button
                     onClick={() => {
-                      removeFromCart({ id: item.id, quantity: item.quantity });
+                      removeFromCart(item.id, item.quantity);
                     }}
                   >
                     Remove

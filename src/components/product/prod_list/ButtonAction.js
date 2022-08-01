@@ -1,7 +1,9 @@
 import { useCallback } from "react";
-import { useShopContext } from "../../../store";
+
 import { actions } from "../../../store";
 import { useBtnsContext } from "../../context";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux/es/exports";
 
 export const ButtonAction = ({
   idProd,
@@ -10,27 +12,30 @@ export const ButtonAction = ({
   cartHandler,
   isEnableAddToCart,
 }) => {
-  const { state, dispatch } = useShopContext();
+  const dispatch = useDispatch();
+  const { cart } = useSelector((state) => state.cart);
+  const { product } = useSelector((state) => state.product);
+
   const { setState } = useBtnsContext();
   const { added, pending } = cartHandler;
 
   const addProductToCart = () => {
     pending();
     setTimeout(() => {
-      dispatch(actions.addToCart({ id: idProd, quantity: quantityChoose }));
+      dispatch(actions.cartActions.addToCart(idProd, quantityChoose));
       added();
     }, 1000);
   };
 
   const removeProduct = (id) => {
-    dispatch(actions.removeProduct(id));
+    dispatch(actions.productActions.removeProduct(id));
   };
 
   const isCarted = useCallback(() => {
-    return state.cart.find((v) => {
+    return cart.find((v) => {
       return v.id === idProd;
     });
-  }, [state.cart]);
+  }, [cart]);
   return (
     <>
       <button onClick={addProductToCart} disabled={isEnableAddToCart}>

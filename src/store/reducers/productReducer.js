@@ -19,7 +19,7 @@ export const initState = {
   isPending: false,
 };
 
-export const reducer = (state, action) => {
+export const productReducer = (state = initState, action) => {
   const findIndexProductById = (id, list) => {
     for (let i = 0; i < list.length; i++) {
       if (list[i].id === id) {

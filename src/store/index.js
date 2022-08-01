@@ -1,5 +1,7 @@
-import {reducer} from "./reducers/index";
-import { ShopProvider, useShopContext } from "./context/index";
+import { reducers } from "./reducers/index";
+import { store } from "./redux/store";
+// import { ShopProvider, useShopContext } from "./context/index";
 import actions from "./actions/index";
 
-export { reducer, ShopProvider, useShopContext, actions };
+export default store;
+export { reducers, actions };
