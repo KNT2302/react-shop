@@ -1,10 +1,10 @@
-import { Link, Switch, Route } from "react-router-dom";
-import { Cart, Products } from "./components";
+import { Link, Switch, Route } from "react-router-dom"
+import { Cart, Products } from "./components"
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to my shop</h1>
+      <h1>pEW Pew</h1>
       <nav>
         <ul>
           <li>
@@ -30,7 +30,7 @@ function App() {
         </Route>
       </Switch>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
