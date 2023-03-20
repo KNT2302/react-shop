@@ -4,7 +4,7 @@ import { Cart, Products } from "./components"
 function App() {
   return (
     <div className="App">
-      <h1>pEW Pew</h1>
+      <h1>My shop</h1>
       <nav>
         <ul>
           <li>
