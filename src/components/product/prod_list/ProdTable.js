@@ -1,9 +1,10 @@
 import React from "react";
-import { useShopContext } from "../../../store";
+import { useSelector } from "react-redux/es/exports";
 import { ProductTableRow } from "./ProductTableRow";
 
 export const ProdTable = ({ getProductUpdate }) => {
-  const { state } = useShopContext();
+  const { product } = useSelector((state) => state.product);
+
   return (
     <table>
       <thead>
@@ -17,7 +18,7 @@ export const ProdTable = ({ getProductUpdate }) => {
         </tr>
       </thead>
       <tbody>
-        {state.product.map((item, index) => {
+        {product.map((item, index) => {
           return (
             <ProductTableRow
               key={item.id}

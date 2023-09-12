@@ -1,5 +1,5 @@
-import { Link, Switch, Route } from "react-router-dom"
-import { Cart, Products } from "./components"
+import { Link, Switch, Route } from "react-router-dom";
+import { Cart, Products } from "./components";
 
 function App() {
   return (
